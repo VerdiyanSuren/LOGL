@@ -26,6 +26,7 @@ IncludeDir["GLFW"] = "Vendor/GLFW/include"
 IncludeDir["GLAD"] = "Vendor/GLAD/include"
 IncludeDir["SOIL"] = "Vendor/SOIL/include"
 IncludeDir["ASSIMP"] = "Vendor/Assimp/include"
+IncludeDir["GLM"] = "Vendor/glm"
 
 include "Vendor/GLFW"
 include "Vendor/GLAD"
@@ -51,18 +52,20 @@ project "LOGLCore"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.SOIL}",
-		"%{IncludeDir.ASSIMP}"
+		"%{IncludeDir.ASSIMP}",
+		"%{IncludeDir.GLM}"
 	}
 	libdirs
 	{
 		"%{wks.location}/bin/" .. outputdir .. "/GLFW",
-		"%{wks.location}/bin/" .. outputdir .. "/GLAD"		
+		"%{wks.location}/bin/" .. outputdir .. "/GLAD",
+		"%{wks.location}/bin/" .. outputdir .. "/Assimp"		
 	}
 	links
 	{
 		"glfw.lib",
 		"glad.lib",
-		"assimp.lib"
+		"Assimp.lib"
 	}
 	filter "system:windows"
 		cppdialect "C++17"

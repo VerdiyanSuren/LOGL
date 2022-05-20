@@ -6,16 +6,20 @@
 
 namespace vfLOGL
 {
-	class vfLOGLApp
+	class App
 	{
 	public:
-		static vfLOGLApp& app();
+		static App& app();
 		void run();
 	private:
-		vfLOGLApp();
+		App();
 	private:
-		static vfLOGLApp* g_app;
+		static App* g_app;
 		static bool g_glfw_initialized;
+	private:
+		// callsbacks
+		static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+		static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 		static void resize(GLFWwindow* window, int width, int height);
 	public:
 		static int g_width, g_height;
