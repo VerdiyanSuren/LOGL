@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLFW", "Vendor\GLFW.vcxproj
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LOGLCore", "LOGLCore.vcxproj", "{FC6B9B0B-E838-F616-1152-E4BEFD7D2BA5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Soil", "Vendor\Soil\Soil.vcxproj", "{1C798C7C-08B0-8D0D-B19C-73109DB2090F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Soil", "Vendor\Soil.vcxproj", "{1C798C7C-08B0-8D0D-B19C-73109DB2090F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\SOIL">
+      <UniqueIdentifier>{0F2AD069-FB8C-5F0E-A412-98C490542B91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\original">
+      <UniqueIdentifier>{11A39860-FD05-2805-A68B-60BB92CDF387}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Soil\include\SOIL\SOIL.h">
+      <Filter>include\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Soil\include\SOIL\image_dxt.h">
+      <Filter>include\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Soil\include\SOIL\image_helper.h">
+      <Filter>include\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Soil\include\SOIL\stb_image_aug.h">
+      <Filter>include\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Soil\include\SOIL\stbi_dds_aug.h">
+      <Filter>include\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Soil\include\SOIL\stbi_dds_aug_c.h">
+      <Filter>include\SOIL</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Soil\src\image_dxt.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Soil\src\image_helper.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Soil\src\original\stb_image-1.09.c">
+      <Filter>src\original</Filter>
+    </ClCompile>
+    <ClCompile Include="Soil\src\original\stb_image-1.16.c">
+      <Filter>src\original</Filter>
+    </ClCompile>
+    <ClCompile Include="Soil\src\soil.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Soil\src\stb_image_aug.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -22,15 +22,15 @@ workspace "LOGL"
 outputdir = "%{cfg.buildcfg}_%{cfg.system}_%{cfg.architecture}"
 
 IncludeDir = {}
-IncludeDir["GLFW"] = "Vendor/GLFW/include"
-IncludeDir["GLAD"] = "Vendor/GLAD/include"
-IncludeDir["SOIL"] = "Vendor/SOIL/include"
-IncludeDir["ASSIMP"] = "Vendor/Assimp/include"
-IncludeDir["GLM"] = "Vendor/glm"
+IncludeDir["GLFW"] 		= "Vendor/GLFW/include"
+IncludeDir["GLAD"] 		= "Vendor/GLAD/include"
+IncludeDir["SOIL"] 		= "Vendor/SOIL/include"
+IncludeDir["ASSIMP"] 	= "Vendor/Assimp/include"
+IncludeDir["GLM"] 		= "Vendor/glm"
 
 --include "Vendor/GLFW"
 --include "Vendor/GLAD"
-include "Vendor/Soil"
+--include "Vendor/Soil"
 --include "Vendor/Assimp"
 --------------------------------------------------------------------------------------------	
 -- 										Project LOGLCore
@@ -395,3 +395,46 @@ project "Assimp"
    filter  "configurations:Release"
        runtime "Release"
        optimize "on"
+
+--------------------------------------------------------------------------------------------	
+-- 										Project Soil
+--------------------------------------------------------------------------------------------	
+project "Soil"
+	kind "StaticLib"
+	language "C"
+	location "Vendor"
+
+	targetdir 	("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+	objdir 		("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"Vendor/Soil/include/SOIL/**.h",
+		"Vendor/Soil/src/*.c",
+		"Vendor/Soil/src/original/*.c"
+	}	
+	
+	includedirs
+	{
+		"%{IncludeDir.SOIL}"
+	}	
+	
+	
+	filter "system:windows"
+		staticruntime "On"		
+		--systemversion "latest"
+
+		
+		defines 
+		{ 
+			"_GLFW_WIN32",
+			"_CRT_SECURE_NO_WARNINGS"
+		}
+
+	filter "configurations:Debug"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		runtime "Release"
+		optimize "on"
