@@ -27,6 +27,9 @@
     <ClInclude Include="LOGLCore\include\test.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="LOGLCore\include\vfCamera.h">
+      <Filter>include</Filter>
+    </ClInclude>
     <ClInclude Include="LOGLCore\include\vfLOGLApp.h">
       <Filter>include</Filter>
     </ClInclude>
