@@ -15,7 +15,14 @@ namespace vfLOGL
 	class MeshLoader
 	{
 	public:
-		static Mesh* get_from_file(const char* path);
+		struct MeshInfo
+		{
+			int m_start_mesh_index = -1;
+			int m_loaded_count = 0;
+		};
+		static MeshInfo get_from_file(const char* path);
+		static Mesh& mesh(int ndx);
+		static size_t mesh_count();
 	public:
 		static std::vector<Mesh> m_meshes;
 	};

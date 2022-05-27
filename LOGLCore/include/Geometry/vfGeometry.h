@@ -1,6 +1,6 @@
 #ifndef VF_LOGL_GEOMETRY_H
 #define VF_LOGL_GEOMETRY_H
-
+#include <vfTransform.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -19,9 +19,12 @@ namespace vfLOGL
 	public:
 		virtual ~Geometry() {}
 		//virtual bool load(const char*) = 0;
-		virtual void bind()		const = 0;
-		virtual void unbind()	const = 0;
-		virtual void draw()		const = 0;
+		virtual void bind()		const	= 0;
+		virtual void unbind()	const	= 0;
+		virtual void draw()		const	= 0;
+		virtual void release()	const = 0;
+
+		virtual Transform& transform()	= 0;
 	};
 }
 #endif //!VF_LOGL_GEOMETRY_H

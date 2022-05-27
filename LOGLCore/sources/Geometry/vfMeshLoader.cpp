@@ -19,68 +19,87 @@ namespace Assimp
 }
 
 std::vector<Mesh> MeshLoader::m_meshes;
+Mesh& MeshLoader::mesh(int ndx)
+{
+	return m_meshes[ndx];
+}
+size_t MeshLoader::mesh_count()
+{
+	return m_meshes.size();
+}
 
-Mesh* MeshLoader::get_from_file(const char* path)
+MeshLoader::MeshInfo MeshLoader::get_from_file(const char* path)
 {
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals);
 	if (scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || scene->mRootNode == nullptr)
 	{
 		std::cout << ":>Failed to read mesh " << path <<  std::endl;
-		return nullptr;
+		return { -1,0 };
 	}
-	std::cout << "number of meshes " << scene->mNumMeshes << std::endl;
-	
-	// then do the same for each of its children
-	std::vector<Vertex> vertices;
-	std::vector<unsigned int> indices;
-	
-	aiMesh* mesh = scene->mMeshes[0];
-	vertices.resize(mesh->mNumVertices);
-	for (unsigned int i = 0; i < mesh->mNumVertices; ++i)
+	std::cout << "Root node name: " << scene->mRootNode->mName.C_Str() << std::endl;
+	std::cout << "number of nodes " << scene->mRootNode->mNumChildren << std::endl;
+	int res_ndx = (int)m_meshes.size();
+	int res_cnt = 0;
+	for (int i = 0; i < scene->mRootNode->mNumChildren; ++i)
 	{
-		Vertex vertex;
-		glm::vec3 vector;
-		// position
-		vector.x = mesh->mVertices[i].x;
-		vector.y = mesh->mVertices[i].y;
-		vector.z = mesh->mVertices[i].z;
-		vertex.pos = vector;
-		// normals
-		if (mesh->HasNormals())
+		aiNode* child = scene->mRootNode->mChildren[i];
+		if (child->mNumMeshes > 0)
 		{
-			vector.x = mesh->mNormals[i].x;
-			vector.y = mesh->mNormals[i].y;
-			vector.z = mesh->mNormals[i].z;
-			vertex.norm = vector;
+			std::cout << "	child node name: " << child->mName.C_Str() << " num meshes " << child->mNumMeshes << std::endl;
+			auto xform = child->mTransformation;
+			
+			std::vector<Vertex> vertices;
+			std::vector<unsigned int> indices;
+			unsigned int mesh_ndx = child->mMeshes[0];
+			aiMesh* mesh = scene->mMeshes[mesh_ndx];
+			// read vertices
+			vertices.resize(mesh->mNumVertices);
+			for (unsigned int i = 0; i < mesh->mNumVertices; ++i)
+			{
+				Vertex vertex;
+				glm::vec3 vector;
+				// position
+				vector.x = mesh->mVertices[i].x;
+				vector.y = mesh->mVertices[i].y;
+				vector.z = mesh->mVertices[i].z;
+				vertex.pos = vector;
+				// normals
+				if (mesh->HasNormals())
+				{
+					vector.x = mesh->mNormals[i].x;
+					vector.y = mesh->mNormals[i].y;
+					vector.z = mesh->mNormals[i].z;
+					vertex.norm = vector;
+				}
+				else
+				{
+					std::cout << "mesh has not aany normals" << std::endl;
+				}
+				vertices[i] = vertex;
+			}
+			// read indeces
+			for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+			{
+				aiFace face = mesh->mFaces[i];
+				// retrieve all indices of the face and store them in the indices vector
+				for (unsigned int j = 0; j < face.mNumIndices; j++)
+					indices.push_back(face.mIndices[j]);
+			}
+
+			Mesh* res_mesh = new Mesh(vertices, indices);
+			// transform
+			auto m = res_mesh->transform().xform();
+			for (int y = 0; y < 4; ++y)
+			{
+				for (int z = 0; z < 4; ++z)
+				{
+					m[y][z] = xform[z][y];
+				}
+			}
+			m_meshes.push_back(*res_mesh);
+			res_cnt++;
 		}
-		else
-		{
-			std::cout << "mesh has not aany normals" << std::endl;
-		}
-		if (mesh->mTextureCoords[0]) // does the mesh contain texture coordinates?
-		{
-			glm::vec2 vec;
-			// a vertex can contain up to 8 different texture coordinates. We thus make the assumption that we won't 
-			// use models where a vertex can have multiple texture coordinates so we always take the first set (0).
-			vec.x = mesh->mTextureCoords[0][i].x;
-			vec.y = mesh->mTextureCoords[0][i].y;
-			vertex.uv = vec;
-		}
-		else
-		{
-			std::cout << "mesh has not aany uvs" << std::endl;
-		}
-		vertices[i] = vertex;
 	}
-	for (unsigned int i = 0; i < mesh->mNumFaces; i++)
-	{
-		aiFace face = mesh->mFaces[i];
-		// retrieve all indices of the face and store them in the indices vector
-		for (unsigned int j = 0; j < face.mNumIndices; j++)
-			indices.push_back(face.mIndices[j]);
-	}
-	Mesh* res_mesh = new Mesh(vertices, indices);
-	m_meshes.push_back(*res_mesh);
-	return  res_mesh;
+	return { res_ndx, res_cnt };
 }

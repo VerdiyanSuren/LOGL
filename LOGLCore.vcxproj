@@ -97,15 +97,24 @@
     <ClInclude Include="LOGLCore\include\Geometry\vfGeometry.h" />
     <ClInclude Include="LOGLCore\include\Geometry\vfMesh.h" />
     <ClInclude Include="LOGLCore\include\Geometry\vfMeshLoader.h" />
+    <ClInclude Include="LOGLCore\include\Shaders\vfShader.h" />
     <ClInclude Include="LOGLCore\include\test.h" />
     <ClInclude Include="LOGLCore\include\vfCamera.h" />
+    <ClInclude Include="LOGLCore\include\vfDirectLight.h" />
     <ClInclude Include="LOGLCore\include\vfLOGLApp.h" />
+    <ClInclude Include="LOGLCore\include\vfTransform.h" />
+    <ClInclude Include="LOGLCore\include\vfUniformBufferObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LOGLCore\sources\Geometry\vfMesh.cpp" />
     <ClCompile Include="LOGLCore\sources\Geometry\vfMeshLoader.cpp" />
+    <ClCompile Include="LOGLCore\sources\Shaders\vfShader.cpp" />
     <ClCompile Include="LOGLCore\sources\main.cpp" />
+    <ClCompile Include="LOGLCore\sources\vfCamera.cpp" />
+    <ClCompile Include="LOGLCore\sources\vfDirectLight.cpp" />
     <ClCompile Include="LOGLCore\sources\vfLOGLApp.cpp" />
+    <ClCompile Include="LOGLCore\sources\vfTransform.cpp" />
+    <ClCompile Include="LOGLCore\sources\vfUniformBufferObject.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

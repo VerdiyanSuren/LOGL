@@ -7,11 +7,17 @@
     <Filter Include="include\Geometry">
       <UniqueIdentifier>{046782B0-F05F-A102-1992-868705EA800E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\Shaders">
+      <UniqueIdentifier>{624DF22A-CED8-5FEF-D7E9-E2E343F4BBEF}</UniqueIdentifier>
+    </Filter>
     <Filter Include="sources">
       <UniqueIdentifier>{A9EE9AA3-15CE-193F-1EE6-A4158A4480A0}</UniqueIdentifier>
     </Filter>
     <Filter Include="sources\Geometry">
       <UniqueIdentifier>{24AA6F21-10A3-8E73-39D5-73F8252D6E7F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Shaders">
+      <UniqueIdentifier>{82ACB383-EE37-2148-F748-A43C63537D48}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -24,13 +30,25 @@
     <ClInclude Include="LOGLCore\include\Geometry\vfMeshLoader.h">
       <Filter>include\Geometry</Filter>
     </ClInclude>
+    <ClInclude Include="LOGLCore\include\Shaders\vfShader.h">
+      <Filter>include\Shaders</Filter>
+    </ClInclude>
     <ClInclude Include="LOGLCore\include\test.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="LOGLCore\include\vfCamera.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="LOGLCore\include\vfDirectLight.h">
+      <Filter>include</Filter>
+    </ClInclude>
     <ClInclude Include="LOGLCore\include\vfLOGLApp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="LOGLCore\include\vfTransform.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="LOGLCore\include\vfUniformBufferObject.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,10 +59,25 @@
     <ClCompile Include="LOGLCore\sources\Geometry\vfMeshLoader.cpp">
       <Filter>sources\Geometry</Filter>
     </ClCompile>
+    <ClCompile Include="LOGLCore\sources\Shaders\vfShader.cpp">
+      <Filter>sources\Shaders</Filter>
+    </ClCompile>
     <ClCompile Include="LOGLCore\sources\main.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="LOGLCore\sources\vfCamera.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGLCore\sources\vfDirectLight.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
     <ClCompile Include="LOGLCore\sources\vfLOGLApp.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGLCore\sources\vfTransform.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGLCore\sources\vfUniformBufferObject.cpp">
       <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -39,3 +39,11 @@ void Mesh::draw()	const
 {
 	glDrawElements(GL_TRIANGLES, m_index_size, GL_UNSIGNED_INT, 0);
 }
+void Mesh::release()	const
+{
+	glBindVertexArray(0);
+	glDeleteBuffers(1, &m_vbo);
+	glDeleteBuffers(1, &m_ebo);
+	glDeleteVertexArrays(1, &m_vao);
+
+}
