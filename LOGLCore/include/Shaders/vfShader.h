@@ -3,7 +3,7 @@
 
 #include <glm/glm.hpp>
 #include <string>
-
+#include <vector>
 namespace vfLOGL
 {
 	class Shader
@@ -26,6 +26,8 @@ namespace vfLOGL
 		void set_vec3(const char* name, const glm::vec3&);
 	private:
 		unsigned  int	create_shader(const std::string& p_vrtx, const std::string& p_frgmnt);
+	public:
+		static std::vector<unsigned int> g_id_arr;
 	};
 }
 

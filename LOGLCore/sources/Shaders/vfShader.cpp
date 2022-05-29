@@ -5,6 +5,7 @@
 #include <iostream>
 
 using namespace vfLOGL;
+std::vector<unsigned int> Shader::g_id_arr;
 
 Shader::Shader(const std::string& file_path)
 {
@@ -107,7 +108,8 @@ unsigned  int	Shader::create_shader(const std::string& p_vrtx, const std::string
 	glDeleteShader(l_fragment_shader_id);
 	glLinkProgram(0);
 	m_id = l_program_id;
-	std::cout << "program id " << l_program_id << std::endl;
+	//std::cout << "program id " << l_program_id << std::endl;
+	g_id_arr.push_back(m_id);
 	return l_program_id;
 }
 void Shader::set_matrix(const char* name, const glm::mat4& mat)

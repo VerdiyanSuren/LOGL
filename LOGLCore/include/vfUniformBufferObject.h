@@ -6,13 +6,15 @@ namespace vfLOGL
 	class UniformBufferObject
 	{
 	public:
-		UniformBufferObject(unsigned int p_size);
-		void allocate(unsigned int bind_point);
+		UniformBufferObject();
+		void realloc(unsigned int bind_point, unsigned int p_size);
 		void free();
 		void bind() const;
+		void unbind() const;
+		unsigned int id() const { return m_id; }
 	private:
-		unsigned int m_buff_size;
-		unsigned int m_id;
+		unsigned int m_buff_size	= 0;
+		unsigned int m_id			= 0;
 	};
 }
 

@@ -3,6 +3,7 @@
 #include <Geometry/vfMesh.h>
 #include <vfCamera.h>
 #include <vfTransform.h>
+#include <vfDirectLight.h>
 #include <iostream>
 using namespace vfLOGL;
 
@@ -131,7 +132,7 @@ void App::mouse_callback(GLFWwindow* window, double xpos, double ypos)
 				float dx = g_cam_press_x - x_pos; dx *= 0.005f;
 				float dy = y_pos - g_cam_press_y; dy *= 0.005f;
 
-				glm::vec3 z_axis = g_camera->get_transform().get_axis_z();				
+				glm::vec3 z_axis = g_camera->get_transform().get_axis_z();
 				glm::vec3 offset = z_axis * (dx + dy);
 
 				g_camera->get_transform().add_translate(offset);
@@ -197,18 +198,30 @@ App::App()
 		g_camera->get_transform().set_translate(glm::vec3(0.0f, 0.0f, 3.0f));
 		g_camera->set_fov(45);
 
+		auto light = DirectLight::create_light();
+		auto light2 = DirectLight::create_light();
+		if (light == nullptr)
+		{
+			std::cout << ":>Failed to create light" << std::endl;
+			return;
+		}
+		light2->diffuse = glm::vec4(0.6f, 0.1f, 0.1f,1.0f);
+		DirectLight::update_ubo();
  		g_glfw_initialized = true;
 
-		glEnable(GL_DEPTH_TEST);
+		//glEnable(GL_DEPTH_TEST);
 	}
 }
 void App::run()
 {
-	g_shader->use();
-	g_shader->set_int("u_dlCount", 1);
-	g_shader->set_vec3("u_ambient", glm::vec3(0.1f, 0.2f, 0.3f));
-	GLint mvp = glGetUniformLocation(g_shader->get_id(), "u_MVP");
-	std::cout << "u_MVP " << mvp << std::endl;
+	//g_shader->use();
+	//g_shader->set_int("u_dlCount", 1);
+	//g_shader->set_vec3("u_ambient", glm::vec3(0.1f, 0.2f, 0.3f));
+	//g_shader->set_matrix("u_MVP", g_camera->get_vp());
+	//GLint mvp = glGetUniformLocation(g_shader->get_id(), "u_MVP");	
+	//std::cout << "u_MVP " << mvp << std::endl;
+	
+
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	while (!glfwWindowShouldClose(g_wnd))
 	{
@@ -228,5 +241,6 @@ void App::run()
 	g_shader->release();
 	delete g_shader;
 	delete g_camera;
+	DirectLight::clear_all_lights();
 	glfwTerminate();
 }
