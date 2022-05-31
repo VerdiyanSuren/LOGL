@@ -17,8 +17,8 @@ namespace vfLOGL
 			//float pass_1;
 			//float pass_2;
 			//float pass_3;
-			glm::vec4 direction = glm::vec4(1.0f, 0.0f, 0.0f, 0);
-			glm::vec4 diffuse	= glm::vec4(0.0f, 0.2f, 0.0f, 0);
+			glm::vec4 direction = glm::normalize(glm::vec4(-1.0f, -2.0f, 0.0f, 0));
+			glm::vec4 diffuse	= glm::vec4(1.0f, 1.0f, 1.0f, 0);
 			glm::vec4 specular	= glm::vec4(0.0f, 0.0f, 1.0f, 0);
 			float intensity = 0.2f;
 			//float attenuation = 0.2f;

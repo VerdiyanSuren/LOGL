@@ -1,6 +1,7 @@
 #include <glad/glad.h>
 #include <vfDirectLight.h>
 #include <Shaders/vfShader.h>
+#include <vfLOGLApp.h>
 #include <iostream>
 using namespace vfLOGL;
 
@@ -41,8 +42,10 @@ void DirectLight::update_ubo()
 		glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(GLuint), (GLvoid*)&g_light_count);
 		glBufferSubData(GL_UNIFORM_BUFFER, sizeof(GLuint) + 3 * sizeof(GLfloat), LOGL_DIRECT_LIGHT_SIZE * sizeof(DirectLight::Light), (GLvoid*)&g_dlights[0]);
 		g_ubo.unbind();
-		for (auto shader_id : Shader::g_id_arr)
+		auto& shLib = App::g_shader_lib;
+		for (unsigned int i = 0; i < shLib.size(); ++i)
 		{
+			auto shader_id = shLib.get(i)->get_id();
 			unsigned int uniform_ndx = glGetUniformBlockIndex(shader_id, LOGL_DIRECT_LIGHT_NAME);
 			glUniformBlockBinding(shader_id, uniform_ndx, g_bind_point);
 		}

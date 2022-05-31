@@ -97,21 +97,34 @@
     <ClInclude Include="LOGLCore\include\Geometry\vfGeometry.h" />
     <ClInclude Include="LOGLCore\include\Geometry\vfMesh.h" />
     <ClInclude Include="LOGLCore\include\Geometry\vfMeshLoader.h" />
+    <ClInclude Include="LOGLCore\include\Shaders\vfMaterial.h" />
+    <ClInclude Include="LOGLCore\include\Shaders\vfMaterialLib.h" />
     <ClInclude Include="LOGLCore\include\Shaders\vfShader.h" />
+    <ClInclude Include="LOGLCore\include\Shaders\vfShaderLib.h" />
+    <ClInclude Include="LOGLCore\include\Texture\vfTexture2d.h" />
+    <ClInclude Include="LOGLCore\include\Texture\vfTexture2dLib.h" />
     <ClInclude Include="LOGLCore\include\test.h" />
     <ClInclude Include="LOGLCore\include\vfCamera.h" />
     <ClInclude Include="LOGLCore\include\vfDirectLight.h" />
+    <ClInclude Include="LOGLCore\include\vfFrameBufferObject.h" />
     <ClInclude Include="LOGLCore\include\vfLOGLApp.h" />
+    <ClInclude Include="LOGLCore\include\vfLib.h" />
     <ClInclude Include="LOGLCore\include\vfTransform.h" />
     <ClInclude Include="LOGLCore\include\vfUniformBufferObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LOGLCore\sources\Geometry\vfMesh.cpp" />
     <ClCompile Include="LOGLCore\sources\Geometry\vfMeshLoader.cpp" />
+    <ClCompile Include="LOGLCore\sources\Shaders\vfMaterial.cpp" />
+    <ClCompile Include="LOGLCore\sources\Shaders\vfMaterialLib.cpp" />
     <ClCompile Include="LOGLCore\sources\Shaders\vfShader.cpp" />
+    <ClCompile Include="LOGLCore\sources\Shaders\vfShaderLib.cpp" />
+    <ClCompile Include="LOGLCore\sources\Texture\vfTexture2d.cpp" />
+    <ClCompile Include="LOGLCore\sources\Texture\vfTexture2dLib.cpp" />
     <ClCompile Include="LOGLCore\sources\main.cpp" />
     <ClCompile Include="LOGLCore\sources\vfCamera.cpp" />
     <ClCompile Include="LOGLCore\sources\vfDirectLight.cpp" />
+    <ClCompile Include="LOGLCore\sources\vfFrameBufferObject.cpp" />
     <ClCompile Include="LOGLCore\sources\vfLOGLApp.cpp" />
     <ClCompile Include="LOGLCore\sources\vfTransform.cpp" />
     <ClCompile Include="LOGLCore\sources\vfUniformBufferObject.cpp" />

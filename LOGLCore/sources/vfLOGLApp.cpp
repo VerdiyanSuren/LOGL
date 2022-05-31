@@ -13,8 +13,8 @@ int App::g_width				= 800;
 int App::g_height				= 600;
 std::string		App::g_title	= "Test Window";
 GLFWwindow*		App::g_wnd		= nullptr;
-Shader*			App::g_shader	= nullptr;
 Camera*			App::g_camera	= nullptr;
+ShaderLib		App::g_shader_lib;
 
 bool App::g_keys[1024]			= { false };
 App::CameraTrackMode App::g_mouse_mode = App::CameraTrackMode::k_none;
@@ -191,32 +191,37 @@ App::App()
 		glfwSetKeyCallback(g_wnd, key_callback);
 		glfwSetCursorPosCallback(g_wnd, mouse_callback);
 		glfwSetMouseButtonCallback(g_wnd, mouse_button_callback);
+		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_CULL_FACE);
 
-		g_shader = new Shader("basic.shader");
+		g_shader_lib.new_shader("../../../Data/Shaders/basic.shader");
 
 		g_camera = new Camera();
 		g_camera->get_transform().set_translate(glm::vec3(0.0f, 0.0f, 3.0f));
 		g_camera->set_fov(45);
 
-		auto light = DirectLight::create_light();
+		auto light1 = DirectLight::create_light();
 		auto light2 = DirectLight::create_light();
-		if (light == nullptr)
+		if (light1 == nullptr)
 		{
 			std::cout << ":>Failed to create light" << std::endl;
 			return;
 		}
-		light2->diffuse = glm::vec4(0.6f, 0.1f, 0.1f,1.0f);
+		light1->intensity = 0.8f;
+		light1->diffuse = glm::vec4(0.8f, 0.8f, 1.0f, 1.0f);
+		light2->diffuse = glm::vec4(0.5f, 0.5f, 0.0f,1.0f);
+		light2->direction = glm::normalize(glm::vec4(1.0f, 1.f, 0.f, 1.0f));
+		light2->intensity = 0.4f;
 		DirectLight::update_ubo();
  		g_glfw_initialized = true;
-
-		//glEnable(GL_DEPTH_TEST);
 	}
 }
 void App::run()
 {
-	//g_shader->use();
+	auto shader = g_shader_lib.get(0);
+	shader->use();
 	//g_shader->set_int("u_dlCount", 1);
-	//g_shader->set_vec3("u_ambient", glm::vec3(0.1f, 0.2f, 0.3f));
+	shader->set_vec3("u_ambient", glm::vec3(0.1f, 0.0f, 0.0f));
 	//g_shader->set_matrix("u_MVP", g_camera->get_vp());
 	//GLint mvp = glGetUniformLocation(g_shader->get_id(), "u_MVP");	
 	//std::cout << "u_MVP " << mvp << std::endl;
@@ -226,9 +231,9 @@ void App::run()
 	while (!glfwWindowShouldClose(g_wnd))
 	{
 		glfwPollEvents();
-		glClear(GL_COLOR_BUFFER_BIT);
-		g_shader->use();
-		g_shader->set_matrix("u_MVP", g_camera->get_vp());
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//shader->use();
+		shader->set_matrix("u_MVP", g_camera->get_vp());
 		//glUniformMatrix4fv(glGetUniformLocation(g_shader->get_id(), "u_MVP"), 1, GL_FALSE, &(g_camera->get_vp()[0][0]));
 		//glUniformMatrix4fv(glGetUniformLocation(g_shader->get_id(), "u_MVP"), 1, GL_FALSE, &mat[0][0]);
 		for (auto& mesh: MeshLoader::m_meshes)
@@ -238,8 +243,8 @@ void App::run()
 		}
 		glfwSwapBuffers(g_wnd);
 	}
-	g_shader->release();
-	delete g_shader;
+	shader->release();
+	//delete g_shader;
 	delete g_camera;
 	DirectLight::clear_all_lights();
 	glfwTerminate();

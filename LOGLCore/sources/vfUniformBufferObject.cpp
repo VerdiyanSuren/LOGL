@@ -1,6 +1,7 @@
 #include <vfUniformBufferObject.h>
 #include <glad/glad.h>
 #include <iostream>
+
 using namespace vfLOGL;
 
 UniformBufferObject::UniformBufferObject()

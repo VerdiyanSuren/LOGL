@@ -31,7 +31,7 @@ size_t MeshLoader::mesh_count()
 MeshLoader::MeshInfo MeshLoader::get_from_file(const char* path)
 {
 	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals);
+	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals | aiProcess_FixInfacingNormals);
 	if (scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || scene->mRootNode == nullptr)
 	{
 		std::cout << ":>Failed to read mesh " << path <<  std::endl;
@@ -74,7 +74,16 @@ MeshLoader::MeshInfo MeshLoader::get_from_file(const char* path)
 				}
 				else
 				{
-					std::cout << "mesh has not aany normals" << std::endl;
+					std::cout << "mesh has not any normals" << std::endl;
+				}
+				if (mesh->HasTextureCoords(0))
+				{
+					vertex.uv.x = mesh->mTextureCoords[0][i].x;
+					vertex.uv.y = mesh->mTextureCoords[0][i].y;
+				}
+				else
+				{
+					vertex.uv = glm::vec2(0.0f, 0.0f);
 				}
 				vertices[i] = vertex;
 			}

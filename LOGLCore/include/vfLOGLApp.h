@@ -2,7 +2,7 @@
 #define VFLOGL_APP_H
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <Shaders/vfShader.h>
+#include <Shaders/vfShaderLib.h>
 #include <vfCamera.h>
 #include <string>
 
@@ -35,12 +35,11 @@ namespace vfLOGL
 		static int g_width, g_height;
 		static std::string g_title;
 		static GLFWwindow* g_wnd;
-
-		static Shader*	g_shader;
+		static ShaderLib   g_shader_lib;
 		static Camera*	g_camera;
 		static bool		g_keys[1024];
 		static CameraTrackMode g_mouse_mode;
-		static float g_cam_press_x, g_cam_press_y;		
+		static float g_cam_press_x, g_cam_press_y;
 	};
 }
 

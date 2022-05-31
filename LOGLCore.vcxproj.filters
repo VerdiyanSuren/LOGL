@@ -10,6 +10,9 @@
     <Filter Include="include\Shaders">
       <UniqueIdentifier>{624DF22A-CED8-5FEF-D7E9-E2E343F4BBEF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\Texture">
+      <UniqueIdentifier>{E94D9672-55D9-0337-5EEA-862BCAF45F37}</UniqueIdentifier>
+    </Filter>
     <Filter Include="sources">
       <UniqueIdentifier>{A9EE9AA3-15CE-193F-1EE6-A4158A4480A0}</UniqueIdentifier>
     </Filter>
@@ -18,6 +21,9 @@
     </Filter>
     <Filter Include="sources\Shaders">
       <UniqueIdentifier>{82ACB383-EE37-2148-F748-A43C63537D48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\Texture">
+      <UniqueIdentifier>{09AD57CB-7538-C58F-7E49-4884EA532190}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,8 +36,23 @@
     <ClInclude Include="LOGLCore\include\Geometry\vfMeshLoader.h">
       <Filter>include\Geometry</Filter>
     </ClInclude>
+    <ClInclude Include="LOGLCore\include\Shaders\vfMaterial.h">
+      <Filter>include\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="LOGLCore\include\Shaders\vfMaterialLib.h">
+      <Filter>include\Shaders</Filter>
+    </ClInclude>
     <ClInclude Include="LOGLCore\include\Shaders\vfShader.h">
       <Filter>include\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="LOGLCore\include\Shaders\vfShaderLib.h">
+      <Filter>include\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="LOGLCore\include\Texture\vfTexture2d.h">
+      <Filter>include\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="LOGLCore\include\Texture\vfTexture2dLib.h">
+      <Filter>include\Texture</Filter>
     </ClInclude>
     <ClInclude Include="LOGLCore\include\test.h">
       <Filter>include</Filter>
@@ -42,7 +63,13 @@
     <ClInclude Include="LOGLCore\include\vfDirectLight.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="LOGLCore\include\vfFrameBufferObject.h">
+      <Filter>include</Filter>
+    </ClInclude>
     <ClInclude Include="LOGLCore\include\vfLOGLApp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="LOGLCore\include\vfLib.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="LOGLCore\include\vfTransform.h">
@@ -59,8 +86,23 @@
     <ClCompile Include="LOGLCore\sources\Geometry\vfMeshLoader.cpp">
       <Filter>sources\Geometry</Filter>
     </ClCompile>
+    <ClCompile Include="LOGLCore\sources\Shaders\vfMaterial.cpp">
+      <Filter>sources\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGLCore\sources\Shaders\vfMaterialLib.cpp">
+      <Filter>sources\Shaders</Filter>
+    </ClCompile>
     <ClCompile Include="LOGLCore\sources\Shaders\vfShader.cpp">
       <Filter>sources\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGLCore\sources\Shaders\vfShaderLib.cpp">
+      <Filter>sources\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGLCore\sources\Texture\vfTexture2d.cpp">
+      <Filter>sources\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGLCore\sources\Texture\vfTexture2dLib.cpp">
+      <Filter>sources\Texture</Filter>
     </ClCompile>
     <ClCompile Include="LOGLCore\sources\main.cpp">
       <Filter>sources</Filter>
@@ -69,6 +111,9 @@
       <Filter>sources</Filter>
     </ClCompile>
     <ClCompile Include="LOGLCore\sources\vfDirectLight.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGLCore\sources\vfFrameBufferObject.cpp">
       <Filter>sources</Filter>
     </ClCompile>
     <ClCompile Include="LOGLCore\sources\vfLOGLApp.cpp">
